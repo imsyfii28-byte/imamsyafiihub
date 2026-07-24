@@ -14,6 +14,7 @@ export interface Article {
   keywords: string[];
   openAccess: boolean;
   pdfUrl?: string;
+  contentType?: 'pdf' | 'html';
   language: string;
   quartile?: string;
   type: ArticleType;

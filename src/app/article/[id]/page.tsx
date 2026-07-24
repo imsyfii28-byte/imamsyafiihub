@@ -184,7 +184,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
 
             {article.pdfUrl && (
               <TabsContent value="pdf" className="mt-4">
-                <PdfViewer url={article.pdfUrl} title={article.title} />
+                <PdfViewer url={article.pdfUrl} title={article.title} contentType={article.contentType || 'pdf'} />
               </TabsContent>
             )}
 

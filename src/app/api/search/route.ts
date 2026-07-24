@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { searchOpenAlex } from '@/lib/api/openalex';
 import { searchCrossref } from '@/lib/api/crossref';
-import { searchDOAJ } from '@/lib/api/doaj';
+import { searchDOAJ, searchIndonesianJournals } from '@/lib/api/doaj';
 import { searchGaruda } from '@/lib/api/garuda';
 import { SearchFilters } from '@/types';
 
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   }
 
   const sources = source === 'all' 
-    ? ['openalex', 'crossref', 'doaj', 'garuda']
+    ? ['openalex', 'crossref', 'doaj', 'doaj-indonesia', 'garuda']
     : [source];
 
   try {
@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
           case 'openalex': return searchOpenAlex(query, page, perPage);
           case 'crossref': return searchCrossref(query, page, perPage);
           case 'doaj': return searchDOAJ(query, page, perPage);
+          case 'doaj-indonesia': return searchIndonesianJournals(query, page, perPage);
           case 'garuda': return searchGaruda(query, page, perPage);
           default: return searchOpenAlex(query, page, perPage);
         }
