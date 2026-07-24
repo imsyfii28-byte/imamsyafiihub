@@ -26,7 +26,7 @@ const footerLinks = {
   ],
   Developer: [
     { label: 'Imam Syafii', href: '#' },
-    { label: 'UINS Samarinda', href: '#' },
+    { label: 'UINSI Samarinda', href: '#' },
     { label: 'Ilmu Al-Qur\'an & Tafsir', href: '#' },
     { label: 'imsyfii28@email.com', href: 'mailto:imsyfii28@email.com' },
   ],
