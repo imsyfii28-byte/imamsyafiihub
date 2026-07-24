@@ -24,13 +24,19 @@ const footerLinks = {
     { label: 'Education', href: '/search?subject=education' },
     { label: 'Economics', href: '/search?subject=economics' },
   ],
+  Developer: [
+    { label: 'Imam Syafii', href: '#' },
+    { label: 'UINS Samarinda', href: '#' },
+    { label: 'Ilmu Al-Qur\'an & Tafsir', href: '#' },
+    { label: 'imsyfii28@email.com', href: 'mailto:imsyfii28@email.com' },
+  ],
 };
 
 export function Footer() {
   return (
     <footer className="border-t bg-slate-50 dark:bg-slate-950">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
@@ -48,7 +54,7 @@ export function Footer() {
               <Link href="https://x.com" className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
                 <X className="h-5 w-5" />
               </Link>
-              <Link href="mailto:contact@scholarhub.ai" className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+              <Link href="mailto:imsyfii28@email.com" className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
                 <Mail className="h-5 w-5" />
               </Link>
             </div>
