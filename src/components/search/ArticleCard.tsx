@@ -106,9 +106,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <Share2 className="h-4 w-4" /> Share
         </Button>
         {article.pdfUrl && (
-          <Button variant="ghost" size="sm" className="gap-1.5 text-slate-600">
-            <FileText className="h-4 w-4" /> PDF
-          </Button>
+          <a href={`/api/pdf?url=${encodeURIComponent(article.pdfUrl)}`} target="_blank" rel="noopener noreferrer">
+            <Button variant="ghost" size="sm" className="gap-1.5 text-slate-600">
+              <FileText className="h-4 w-4" /> PDF
+            </Button>
+          </a>
         )}
         <div className="flex-1" />
         <Link href={`/article/${article.id}`}>

@@ -15,6 +15,9 @@ import { CitationGenerator } from '@/components/citation/CitationGenerator';
 import { useBookmark } from '@/hooks/use-bookmark';
 import { formatCitationCount, getArticleTypeColor } from '@/lib/utils';
 import { toast } from 'sonner';
+import dynamic from 'next/dynamic';
+
+const PdfViewer = dynamic(() => import('@/components/article/PdfViewer').then(m => m.PdfViewer), { ssr: false });
 
 export default function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -22,6 +25,11 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
   const [related, setRelated] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const { isBookmarked, addBookmark, removeBookmark } = useBookmark();
+
+  const handleDownloadPdf = (pdfUrl: string) => {
+    const proxyUrl = `/api/pdf?url=${encodeURIComponent(pdfUrl)}`;
+    window.open(proxyUrl, '_blank');
+  };
 
   useEffect(() => {
     async function load() {
@@ -146,23 +154,39 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
             <Button variant="outline" size="sm" className="gap-2">
               <Share2 className="h-4 w-4" /> Share
             </Button>
-            <Button variant="outline" size="sm" className="gap-2">
-              <Download className="h-4 w-4" /> Download
-            </Button>
             {article.pdfUrl && (
-              <Button size="sm" className="gap-2 bg-blue-600 hover:bg-blue-700">
-                <FileText className="h-4 w-4" /> PDF <ExternalLink className="h-3 w-3" />
+              <>
+                <Button variant="outline" size="sm" className="gap-2" onClick={() => handleDownloadPdf(article.pdfUrl!)}>
+                  <Download className="h-4 w-4" /> Download PDF
+                </Button>
+                <a href={article.pdfUrl} target="_blank" rel="noopener noreferrer">
+                  <Button size="sm" className="gap-2 bg-blue-600 hover:bg-blue-700">
+                    <FileText className="h-4 w-4" /> Open PDF <ExternalLink className="h-3 w-3" />
+                  </Button>
+                </a>
+              </>
+            )}
+            {!article.pdfUrl && (
+              <Button variant="outline" size="sm" className="gap-2" disabled>
+                <FileText className="h-4 w-4" /> PDF Not Available
               </Button>
             )}
           </div>
 
-          <Tabs defaultValue="abstract" className="mt-6">
+          <Tabs defaultValue={article.pdfUrl ? 'pdf' : 'abstract'} className="mt-6">
             <TabsList>
+              {article.pdfUrl && <TabsTrigger value="pdf">PDF Viewer</TabsTrigger>}
               <TabsTrigger value="abstract">Abstract</TabsTrigger>
               <TabsTrigger value="details">Details</TabsTrigger>
               <TabsTrigger value="citations">Citations</TabsTrigger>
               <TabsTrigger value="related">Related</TabsTrigger>
             </TabsList>
+
+            {article.pdfUrl && (
+              <TabsContent value="pdf" className="mt-4">
+                <PdfViewer url={article.pdfUrl} title={article.title} />
+              </TabsContent>
+            )}
 
             <TabsContent value="abstract" className="mt-4">
               <h3 className="text-lg font-semibold mb-3">Abstract</h3>
