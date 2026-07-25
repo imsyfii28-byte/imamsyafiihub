@@ -940,6 +940,33 @@ const indonesianArticles: Article[] = [
     source: 'Custom Article',
     createdAt: new Date(2026, 0, 1).toISOString(),
   },
+  {
+    id: 'article-id-35',
+    title: 'KAJIAN KRITIS AL-DAKHIL JALUR SAHABAT DAN TABI\'IN',
+    authors: [
+      { name: 'Ratna Hardiyanti', affiliation: 'UINSI Samarinda' },
+      { name: 'Nadila', affiliation: 'UINSI Samarinda' },
+      { name: 'Muhammad Rizqan', affiliation: 'UINSI Samarinda' },
+    ],
+    year: 2026,
+    publisher: 'UINSI Samarinda',
+    journal: 'Jurnal Ilmu Al-Qur\'an dan Tafsir',
+    volume: '1',
+    issue: '1',
+    pages: '1-20',
+    doi: '',
+    citationCount: 0,
+    abstract: 'Al-Dakhil adalah istilah untuk ajaran atau pemikiran asing yang masuk ke dalam Islam dan dapat merusak pemahaman yang benar terhadap Al-Qur\'an. Makalah ini mengkaji secara kritis fenomena al-dakhil pada masa sahabat dan tabi\'in, khususnya melalui jalur riwayat. Penelitian ini menggunakan metode kualitatif deskriptif dengan pendekatan kepustakaan. Hasil kajian menunjukkan bahwa infiltrasi pemikiran asing sudah mulai terjadi sejak masa tabi\'in, terutama melalui masuknya riwayat Israiliyyat yang tidak valid dan pendapat sahabat serta tabi\'in yang tidak dapat dipertanggungjawabkan. Kajian ini penting untuk menjaga otensitas penafsiran Al-Qur\'an agar terhindar dari kontaminasi pemikiran yang menyimpang.',
+    keywords: ['al-dakhil', 'tafsir', 'sahabat', 'tabi\'in', 'Israiliyyat', 'kritik tafsir'],
+    openAccess: true,
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=1mVCCAs0E90M9X0mPqWDyeuiVptLs9jGS',
+    contentType: 'html',
+    language: 'id',
+    type: 'article',
+    subject: 'islamic-studies',
+    source: 'Custom Article',
+    createdAt: new Date(2026, 0, 1).toISOString(),
+  },
 ];
 
 const internationalArticles: Article[] = Array.from({ length: 40 }, (_, i) => ({
