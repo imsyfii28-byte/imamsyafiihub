@@ -3,6 +3,7 @@ import { searchOpenAlex } from '@/lib/api/openalex';
 import { searchCrossref } from '@/lib/api/crossref';
 import { searchDOAJ, searchIndonesianJournals } from '@/lib/api/doaj';
 import { searchGaruda } from '@/lib/api/garuda';
+import { mockArticles } from '@/services/mock-data';
 import { SearchFilters } from '@/types';
 
 export async function GET(request: NextRequest) {
@@ -21,6 +22,15 @@ export async function GET(request: NextRequest) {
     : [source];
 
   try {
+    // Search local mock articles
+    const queryLower = query.toLowerCase();
+    const localArticles = mockArticles.filter(a => 
+      a.title.toLowerCase().includes(queryLower) ||
+      a.abstract.toLowerCase().includes(queryLower) ||
+      a.keywords.some(k => k.toLowerCase().includes(queryLower)) ||
+      a.authors.some(au => au.name.toLowerCase().includes(queryLower))
+    ).map(a => ({ ...a, source: a.source || 'Local' }));
+
     const results = await Promise.allSettled(
       sources.map(s => {
         switch (s) {
@@ -43,6 +53,9 @@ export async function GET(request: NextRequest) {
         totalResults += result.value.total;
       }
     }
+
+    // Combine local and external articles
+    allArticles = [...localArticles, ...allArticles];
 
     // Deduplicate by DOI
     const seen = new Set<string>();
