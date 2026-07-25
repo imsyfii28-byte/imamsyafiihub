@@ -999,7 +999,7 @@ const internationalArticles: Article[] = Array.from({ length: 40 }, (_, i) => ({
   createdAt: new Date(2026, 0, i + 1).toISOString(),
 }));
 
-const mockArticles: Article[] = [...indonesianArticles, ...internationalArticles];
+export const mockArticles: Article[] = [...indonesianArticles, ...internationalArticles];
 
 const mockTrendingKeywords: TrendingKeyword[] = [
   { keyword: 'Artificial Intelligence', count: 15420, trend: 'up' },
