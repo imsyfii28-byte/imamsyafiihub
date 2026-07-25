@@ -914,6 +914,32 @@ const indonesianArticles: Article[] = [
     source: 'DOAJ (Indonesia)',
     createdAt: new Date(2018, 6, 1).toISOString(),
   },
+  {
+    id: 'article-id-34',
+    title: 'EKOLITERASI DALAM PENAFSIRAN AL-QUR\'AN',
+    authors: [
+      { name: 'Imam Syafi\'i', affiliation: 'UINSI Samarinda' },
+      { name: 'Fathir Hazazi', affiliation: 'UINSI Samarinda' },
+    ],
+    year: 2026,
+    publisher: 'UINSI Samarinda',
+    journal: 'Jurnal Ilmu Al-Qur\'an dan Tafsir',
+    volume: '1',
+    issue: '1',
+    pages: '1-15',
+    doi: '',
+    citationCount: 0,
+    abstract: 'Makalah ini membahas konsep ekoliterasi dalam penafsiran Al-Qur\'an, mengeksplorasi bagaimana Al-Qur\'an memberikan panduan tentang menjaga dan melestarikan lingkungan hidup. Penelitian ini mengkaji ayat-ayat Al-Qur\'an yang berkaitan dengan ekologi dan lingkunganhidup dari perspektif tafsir kontemporer.',
+    keywords: ['ekoliterasi', 'tafsir Al-Qur\'an', 'lingkungan hidup', 'ekologi Islam', 'penafsiran'],
+    openAccess: true,
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=12WwAy1_qnjFjSZJ5H9WK_1UtVXbHXsPT',
+    contentType: 'html',
+    language: 'id',
+    type: 'article',
+    subject: 'islamic-studies',
+    source: 'Custom Article',
+    createdAt: new Date(2026, 0, 1).toISOString(),
+  },
 ];
 
 const internationalArticles: Article[] = Array.from({ length: 40 }, (_, i) => ({
