@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Combine local and external articles
+    // Combine: local articles first, then external
     allArticles = [...localArticles, ...allArticles];
 
     // Deduplicate by DOI
@@ -66,14 +66,20 @@ export async function GET(request: NextRequest) {
       return true;
     });
 
-    // Sort by citation count
-    uniqueArticles.sort((a, b) => b.citationCount - a.citationCount);
+    // Sort: local articles first, then by citation count
+    uniqueArticles.sort((a, b) => {
+      const aIsLocal = a.source === 'Local' || a.source === 'Custom Article';
+      const bIsLocal = b.source === 'Local' || b.source === 'Custom Article';
+      if (aIsLocal && !bIsLocal) return -1;
+      if (!aIsLocal && bIsLocal) return 1;
+      return b.citationCount - a.citationCount;
+    });
 
-    const totalPages = Math.ceil(totalResults / perPage);
+    const totalPages = Math.ceil((totalResults + localArticles.length) / perPage);
 
     return NextResponse.json({
       articles: uniqueArticles.slice(0, perPage),
-      total: totalResults,
+      total: totalResults + localArticles.length,
       page,
       perPage,
       totalPages,
